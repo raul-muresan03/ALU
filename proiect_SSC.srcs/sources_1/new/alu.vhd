@@ -16,8 +16,25 @@ entity ALU is
 end ALU;
 
 architecture Behavioral of ALU is
-    signal aux: std_logic_vector(31 downto 0);
+    signal result1: std_logic_vector(31 downto 0);
+    signal result2: std_logic_vector(31 downto 0);
+    signal result3: std_logic_vector(31 downto 0);
+    signal result4: std_logic_vector(31 downto 0);
+    signal overflow1: std_logic;
+    signal overflow2: std_logic;
+    signal overflow3: std_logic;
+    signal overflow4: std_logic;
+    signal zero1: std_logic;
+    signal zero2: std_logic;
+    signal zero3: std_logic;
+    signal zero4: std_logic;
 begin
+
+    ADD: entity work.add port map(A, B, result1, overflow1, zero1);
+    SUB: entity work.add port map(A, B, result2, overflow2, zero2);
+    MUL: entity work.add port map(A, B, result3, overflow3, zero3);
+    DIV: entity work.add port map(A, B, result4, overflow4, zero4);
+    
     process(A, B)
     begin
         overflow <= '0';
@@ -25,29 +42,15 @@ begin
         
         case operation is
             when "00" =>                 --adunare
-                aux <= A + B;
-                if (A(31) = B(31)) and (A(31) /= aux(31)) then
-                    overflow <= '1';
-                end if;
+                result <= result1;
             when "01" =>                 --scadere
-                aux <= A - B;  
-                if (A(31) = B(31)) and (A(31) /= aux(31)) then
-                    overflow <= '1';
-                end if;
+                result <= result2;
             when "10" =>                 --inmultire
-                aux <= A * B;
+                result <= result3;
             when "11" =>                 --impartire
-                --aux <= A / B;        
+                result <= result4;
             when others =>
-                aux <= (others => '0');
+                result <= (others => '0');
         end case;
-        
-        result <= aux;
-        
-        if aux = X"00000000" then
-            zero <= '1';
-        else
-            zero <= '0';
-        end if;
     end process;
 end Behavioral;
