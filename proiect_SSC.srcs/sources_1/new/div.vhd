@@ -13,7 +13,10 @@ entity div is
     );
 end div;
 
-architecture a4 of mul is
+architecture a4 of div is
+    -- 1 bit semn, 4 biti exponent, 11 biti mantisa
+    
+    
 begin
 
 

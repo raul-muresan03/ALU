@@ -31,9 +31,9 @@ architecture Behavioral of ALU is
 begin
 
     ADD: entity work.add port map(A, B, result1, overflow1, zero1);
-    SUB: entity work.add port map(A, B, result2, overflow2, zero2);
-    MUL: entity work.add port map(A, B, result3, overflow3, zero3);
-    DIV: entity work.add port map(A, B, result4, overflow4, zero4);
+    SUB: entity work.sub port map(A, B, result2, overflow2, zero2);
+    MUL: entity work.mul port map(A, B, result3, overflow3, zero3);
+    --DIV: entity work.div port map(A, B, result4, overflow4, zero4);
     
     process(A, B)
     begin
