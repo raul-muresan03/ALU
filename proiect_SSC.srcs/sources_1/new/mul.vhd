@@ -26,8 +26,11 @@ architecture a3 of mul is
 begin
     process(A, B)
     begin
-        if A(15 downto 0) = x"0000" or B(15 downto 0) = x"0000" then
-            zero <= '0';
+--        if A(15 downto 0) = x"0000" or B(15 downto 0) = x"0000" then
+--            zero <= '1';
+--        end if;
+        
+        zero <= '0';
         overflow <= '0';
         
         semn_A <= A(15);
@@ -38,11 +41,11 @@ begin
         exp_B <= "0" & std_logic_vector(unsigned(B(14 downto 11)) - 8);
         exp_suma <= std_logic_vector(unsigned(exp_A) + unsigned(exp_B));
         
-        if A(10) = '1' then
-            mantisa_A <= A(10 downto 0);
-        else
-            mantisa_A <= "1" & A(10 downto 1);
-        end if;
+--        if A(10) = '1' then
+--            mantisa_A <= A(10 downto 0);
+--        else
+--            mantisa_A <= "1" & A(10 downto 1);
+--        end if;
         
         if B(10) = '1' then
             mantisa_B <= B(10 downto 0);
@@ -50,6 +53,8 @@ begin
             mantisa_B <= "1" & B(10 downto 1);
         end if;
         
+--        mantisa_A <= "1" & A(10 downto 0);
+--        mantisa_B <= "1" & B(10 downto 0);
         
         mantisa_produs <= std_logic_vector(unsigned(mantisa_A) * unsigned(mantisa_B));
 
@@ -71,9 +76,12 @@ begin
 
         if rezultat_final = x"00000000" then
             zero <= '1';
+        else
+            zero <= '0';
         end if;
         
         result <= rezultat_final;
-        
     end process;
+
+        
 end a3;

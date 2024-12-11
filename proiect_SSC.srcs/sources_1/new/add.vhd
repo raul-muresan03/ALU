@@ -46,20 +46,14 @@ begin
 
         --normalizarea rezultatului
         exp_temp <= exp_comun;
-        
---        while rez_aux(10) = '0' and exp_temp > 0 loop
---            rez_aux <= std_logic_vector(shift_left(unsigned(rez_aux), 1));
---            exp_temp <= exp_temp - 1;
---        end loop;
         rez_aux2 <= rez_aux;
         if rez_aux2(10) = '1' then
             rez_aux2 <= std_logic_vector(shift_right(unsigned(rez_aux2), 1));
             exp_temp <= exp_temp + 1;
         end if;
         
-     
         exp_comun <= std_logic_vector(exp_temp);
-        if (A(15) >= B(15))then
+        if unsigned(A(15 downto 0)) >= unsigned(B(15 downto 0)) then
            final_aux <= x"0000" & A(15) & exp_comun & rez_aux2;
         else
             final_aux <= x"0000" & B(15) & exp_comun & rez_aux2;

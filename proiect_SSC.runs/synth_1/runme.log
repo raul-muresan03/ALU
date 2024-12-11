@@ -1,6 +1,6 @@
 
 *** Running vivado
-    with args -log ALU.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source ALU.tcl
+    with args -log test_env.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source test_env.tcl
 
 
 
@@ -8,16 +8,16 @@
   **** SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
   **** IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
   **** SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-  **** Start of session at: Wed Nov 20 15:02:37 2024
+  **** Start of session at: Wed Dec 11 20:09:20 2024
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 
-source ALU.tcl -notrace
-create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 553.246 ; gain = 239.160
-Command: read_checkpoint -auto_incremental -incremental C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/utils_1/imports/synth_1/ALU.dcp
-INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/utils_1/imports/synth_1/ALU.dcp for incremental synthesis
+source test_env.tcl -notrace
+create_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 550.320 ; gain = 234.340
+Command: read_checkpoint -auto_incremental -incremental C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/utils_1/imports/synth_1/ALU.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/utils_1/imports/synth_1/ALU.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
-Command: synth_design -top ALU -part xc7z010clg400-1
+Command: synth_design -top test_env -part xc7z010clg400-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z010'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z010'
@@ -27,120 +27,144 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 13884
+INFO: [Synth 8-7075] Helper process launched with PID 13188
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1407.074 ; gain = 446.840
+Starting RTL Elaboration : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1406.391 ; gain = 447.555
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'ALU' [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/sources_1/new/alu.vhd:18]
-INFO: [Synth 8-226] default block is never used [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/sources_1/new/alu.vhd:26]
-WARNING: [Synth 8-614] signal 'operation' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/sources_1/new/alu.vhd:21]
-WARNING: [Synth 8-614] signal 'aux' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/sources_1/new/alu.vhd:21]
-INFO: [Synth 8-256] done synthesizing module 'ALU' (0#1) [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/sources_1/new/alu.vhd:18]
-WARNING: [Synth 8-3917] design ALU has port overflow driven by constant 0
-WARNING: [Synth 8-3917] design ALU has port zero driven by constant 0
+INFO: [Synth 8-638] synthesizing module 'test_env' [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/test_env.vhd:13]
+INFO: [Synth 8-638] synthesizing module 'add' [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/add.vhd:16]
+WARNING: [Synth 8-614] signal 'mantisa_aux' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/add.vhd:28]
+WARNING: [Synth 8-614] signal 'dif' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/add.vhd:28]
+WARNING: [Synth 8-614] signal 'mantisa_shift' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/add.vhd:28]
+WARNING: [Synth 8-614] signal 'exp_comun' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/add.vhd:28]
+WARNING: [Synth 8-614] signal 'rez_aux' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/add.vhd:28]
+WARNING: [Synth 8-614] signal 'rez_aux2' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/add.vhd:28]
+WARNING: [Synth 8-614] signal 'exp_temp' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/add.vhd:28]
+WARNING: [Synth 8-614] signal 'final_aux' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/add.vhd:28]
+INFO: [Synth 8-256] done synthesizing module 'add' (0#1) [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/add.vhd:16]
+INFO: [Synth 8-638] synthesizing module 'sub' [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/sub.vhd:16]
+WARNING: [Synth 8-614] signal 'mantisa_aux' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/sub.vhd:27]
+WARNING: [Synth 8-614] signal 'dif' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/sub.vhd:27]
+WARNING: [Synth 8-614] signal 'mantisa_shift' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/sub.vhd:27]
+WARNING: [Synth 8-614] signal 'exp_comun' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/sub.vhd:27]
+WARNING: [Synth 8-614] signal 'rez_aux' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/sub.vhd:27]
+WARNING: [Synth 8-614] signal 'exp_temp' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/sub.vhd:27]
+WARNING: [Synth 8-614] signal 'final_aux' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/sub.vhd:27]
+INFO: [Synth 8-256] done synthesizing module 'sub' (0#1) [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/sub.vhd:16]
+INFO: [Synth 8-638] synthesizing module 'mul' [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/mul.vhd:16]
+WARNING: [Synth 8-614] signal 'semn_A' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/mul.vhd:27]
+WARNING: [Synth 8-614] signal 'semn_B' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/mul.vhd:27]
+WARNING: [Synth 8-614] signal 'exp_A' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/mul.vhd:27]
+WARNING: [Synth 8-614] signal 'exp_B' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/mul.vhd:27]
+WARNING: [Synth 8-614] signal 'mantisa_A' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/mul.vhd:27]
+WARNING: [Synth 8-614] signal 'mantisa_B' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/mul.vhd:27]
+WARNING: [Synth 8-614] signal 'mantisa_produs' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/mul.vhd:27]
+WARNING: [Synth 8-614] signal 'exp_suma' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/mul.vhd:27]
+WARNING: [Synth 8-614] signal 'semn_rezultat' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/mul.vhd:27]
+WARNING: [Synth 8-614] signal 'exp_final' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/mul.vhd:27]
+WARNING: [Synth 8-614] signal 'mantisa_norm' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/mul.vhd:27]
+WARNING: [Synth 8-614] signal 'rezultat_final' is read in the process but is not in the sensitivity list [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/mul.vhd:27]
+INFO: [Synth 8-256] done synthesizing module 'mul' (0#1) [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/mul.vhd:16]
+INFO: [Synth 8-226] default block is never used [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/test_env.vhd:43]
+INFO: [Synth 8-256] done synthesizing module 'test_env' (0#1) [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/test_env.vhd:13]
+WARNING: [Synth 8-3848] Net p_0_in in module/entity mul does not have driver.
+WARNING: [Synth 8-3848] Net zero_div in module/entity test_env does not have driver. [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/test_env.vhd:18]
+WARNING: [Synth 8-3848] Net overflow_div in module/entity test_env does not have driver. [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/test_env.vhd:17]
+WARNING: [Synth 8-3848] Net A in module/entity test_env does not have driver. [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/test_env.vhd:19]
+WARNING: [Synth 8-3848] Net B in module/entity test_env does not have driver. [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/test_env.vhd:19]
+WARNING: [Synth 8-7129] Port A[10] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A[9] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A[8] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A[7] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A[6] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A[5] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A[4] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A[3] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A[2] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A[1] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A[0] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port B[10] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port B[9] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port B[8] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port B[7] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port B[6] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port B[5] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port B[4] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port B[3] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port B[2] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port B[1] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port B[0] in module mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port clk in module test_env is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1516.793 ; gain = 556.559
+Finished RTL Elaboration : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1516.902 ; gain = 558.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1516.793 ; gain = 556.559
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1516.902 ; gain = 558.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1516.793 ; gain = 556.559
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1516.902 ; gain = 558.066
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1516.793 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 1516.902 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc]
-WARNING: [Vivado 12-584] No ports matched 'clk'. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:8]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:8]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[0]'. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:17]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:17]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[1]'. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:18]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:18]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[2]'. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:19]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:19]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[3]'. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:20]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:20]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'btn[0]'. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:24]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:24]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'btn[1]'. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:25]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:25]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'btn[2]'. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:26]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:26]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'btn[3]'. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:27]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:27]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[0]'. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:31]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:31]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[1]'. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:32]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:32]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[2]'. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:33]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:33]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'led[3]'. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:34]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:34]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'tx'. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:98]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:98]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'rx'. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:99]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc:99]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-Finished Parsing XDC File [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/constrs_1/new/zybo.xdc]
+Parsing XDC File [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/constrs_1/new/Zybo-Z7-Master.xdc]
+Finished Parsing XDC File [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/constrs_1/new/Zybo-Z7-Master.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/constrs_1/new/Zybo-Z7-Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/test_env_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/test_env_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1550.703 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1599.031 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1550.703 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1599.031 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1550.703 ; gain = 590.469
+Finished Constraint Validation : Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 1599.031 ; gain = 640.195
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z010clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1550.703 ; gain = 590.469
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 1599.031 ; gain = 640.195
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1550.703 ; gain = 590.469
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 1599.031 ; gain = 640.195
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-327] inferring latch for variable 'aux_reg' [C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.srcs/sources_1/new/alu.vhd:28]
+WARNING: [Synth 8-327] inferring latch for variable 'exp_temp_reg' [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/add.vhd:48]
+WARNING: [Synth 8-327] inferring latch for variable 'exp_temp_reg' [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/sub.vhd:47]
+WARNING: [Synth 8-327] inferring latch for variable 'exp_final_reg' [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sources_1/new/mul.vhd:73]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1550.703 ; gain = 590.469
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1599.031 ; gain = 640.195
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   3 Input   32 Bit       Adders := 1     
-	   2 Input   16 Bit       Adders := 1     
+	   3 Input   11 Bit       Adders := 2     
+	   2 Input    5 Bit       Adders := 1     
+	   3 Input    4 Bit       Adders := 2     
+	   2 Input    4 Bit       Adders := 4     
++---XORs : 
+	   2 Input      1 Bit         XORs := 1     
 +---Muxes : 
-	   4 Input   32 Bit        Muxes := 1     
-	   4 Input    1 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 2     
+	   2 Input   11 Bit        Muxes := 7     
+	   2 Input    5 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 5     
+	   5 Input    2 Bit        Muxes := 1     
+	   4 Input    1 Bit        Muxes := 2     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -157,28 +181,119 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-WARNING: [Synth 8-3917] design ALU has port overflow driven by constant 0
-WARNING: [Synth 8-3917] design ALU has port zero driven by constant 0
+WARNING: [Synth 8-7129] Port clk in module test_env is either unconnected or has no load
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_mul/exp_final_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_mul/exp_final_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_mul/exp_final_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_mul/exp_final_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_mul/exp_final_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_mul/exp_final_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_mul/exp_final_reg[0]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_mul/exp_final_reg[0]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-3332] Sequential element (u_mul/exp_final_reg[3]) is unused and will be removed from module test_env.
+WARNING: [Synth 8-3332] Sequential element (u_mul/exp_final_reg[2]) is unused and will be removed from module test_env.
+WARNING: [Synth 8-3332] Sequential element (u_mul/exp_final_reg[1]) is unused and will be removed from module test_env.
+WARNING: [Synth 8-3332] Sequential element (u_mul/exp_final_reg[0]) is unused and will be removed from module test_env.
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[2]  is always disabled
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1550.703 ; gain = 590.469
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1599.031 ; gain = 640.195
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1550.703 ; gain = 590.469
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:46 ; elapsed = 00:00:49 . Memory (MB): peak = 1599.031 ; gain = 640.195
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_add/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[3]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[1]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[2]  is always disabled
+WARNING: [Synth 8-264] enable of latch \u_sub/exp_temp_reg[2]  is always disabled
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1550.703 ; gain = 590.469
+Finished Timing Optimization : Time (s): cpu = 00:00:46 ; elapsed = 00:00:49 . Memory (MB): peak = 1599.031 ; gain = 640.195
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
+WARNING: [Synth 8-3332] Sequential element (u_add/exp_temp_reg[3]) is unused and will be removed from module test_env.
+WARNING: [Synth 8-3332] Sequential element (u_add/exp_temp_reg[2]) is unused and will be removed from module test_env.
+WARNING: [Synth 8-3332] Sequential element (u_add/exp_temp_reg[1]) is unused and will be removed from module test_env.
+WARNING: [Synth 8-3332] Sequential element (u_add/exp_temp_reg[0]) is unused and will be removed from module test_env.
+WARNING: [Synth 8-3332] Sequential element (u_sub/exp_temp_reg[3]) is unused and will be removed from module test_env.
+WARNING: [Synth 8-3332] Sequential element (u_sub/exp_temp_reg[2]) is unused and will be removed from module test_env.
+WARNING: [Synth 8-3332] Sequential element (u_sub/exp_temp_reg[1]) is unused and will be removed from module test_env.
+WARNING: [Synth 8-3332] Sequential element (u_sub/exp_temp_reg[0]) is unused and will be removed from module test_env.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1550.703 ; gain = 590.469
+Finished Technology Mapping : Time (s): cpu = 00:00:46 ; elapsed = 00:00:49 . Memory (MB): peak = 1599.031 ; gain = 640.195
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -196,37 +311,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:38 ; elapsed = 00:00:38 . Memory (MB): peak = 1550.703 ; gain = 590.469
+Finished IO Insertion : Time (s): cpu = 00:00:54 ; elapsed = 00:00:57 . Memory (MB): peak = 1599.031 ; gain = 640.195
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:38 ; elapsed = 00:00:38 . Memory (MB): peak = 1550.703 ; gain = 590.469
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:54 ; elapsed = 00:00:57 . Memory (MB): peak = 1599.031 ; gain = 640.195
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:38 ; elapsed = 00:00:38 . Memory (MB): peak = 1550.703 ; gain = 590.469
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:54 ; elapsed = 00:00:57 . Memory (MB): peak = 1599.031 ; gain = 640.195
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:38 ; elapsed = 00:00:38 . Memory (MB): peak = 1550.703 ; gain = 590.469
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:54 ; elapsed = 00:00:57 . Memory (MB): peak = 1599.031 ; gain = 640.195
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:38 ; elapsed = 00:00:38 . Memory (MB): peak = 1550.703 ; gain = 590.469
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:54 ; elapsed = 00:00:57 . Memory (MB): peak = 1599.031 ; gain = 640.195
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:38 ; elapsed = 00:00:38 . Memory (MB): peak = 1550.703 ; gain = 590.469
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:54 ; elapsed = 00:00:57 . Memory (MB): peak = 1599.031 ; gain = 640.195
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -239,42 +354,33 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+-------+------+
-|      |Cell   |Count |
-+------+-------+------+
-|1     |BUFG   |     1|
-|2     |CARRY4 |     9|
-|3     |LUT1   |     1|
-|4     |LUT2   |    33|
-|5     |LUT3   |    16|
-|6     |LD     |    17|
-|7     |IBUF   |    34|
-|8     |OBUF   |    34|
-+------+-------+------+
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT4 |     2|
+|2     |IBUF |     4|
+|3     |OBUF |     2|
++------+-----+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:38 ; elapsed = 00:00:38 . Memory (MB): peak = 1550.703 ; gain = 590.469
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:54 ; elapsed = 00:00:57 . Memory (MB): peak = 1599.031 ; gain = 640.195
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 4 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:26 ; elapsed = 00:00:36 . Memory (MB): peak = 1550.703 ; gain = 556.559
-Synthesis Optimization Complete : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1550.703 ; gain = 590.469
+Synthesis finished with 0 errors, 0 critical warnings and 97 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:33 ; elapsed = 00:00:54 . Memory (MB): peak = 1599.031 ; gain = 558.066
+Synthesis Optimization Complete : Time (s): cpu = 00:00:54 ; elapsed = 00:00:57 . Memory (MB): peak = 1599.031 ; gain = 640.195
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1550.703 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 26 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1599.031 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
-INFO: [Opt 31-138] Pushed 1 inverter(s) to 17 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1550.703 ; gain = 0.000
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1599.031 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 17 instances were transformed.
-  LD => LDCE (inverted pins: G): 17 instances
+No Unisim elements were transformed.
 
-Synth Design complete | Checksum: 629b1cce
+Synth Design complete | Checksum: 87415a08
 INFO: [Common 17-83] Releasing license: Synthesis
-24 Infos, 23 Warnings, 15 Critical Warnings and 0 Errors encountered.
+29 Infos, 152 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:44 ; elapsed = 00:00:47 . Memory (MB): peak = 1550.703 ; gain = 992.559
-INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1550.703 ; gain = 0.000
-INFO: [Common 17-1381] The checkpoint 'C:/Users/Raul/Desktop/SSC_projects/Proiect_SSC/proiect_SSC.runs/synth_1/ALU.dcp' has been generated.
-INFO: [Vivado 12-24828] Executing command : report_utilization -file ALU_utilization_synth.rpt -pb ALU_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Nov 20 15:03:39 2024...
+synth_design: Time (s): cpu = 00:01:04 ; elapsed = 00:01:10 . Memory (MB): peak = 1599.031 ; gain = 1043.988
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1599.031 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.runs/synth_1/test_env.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file test_env_utilization_synth.rpt -pb test_env_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Dec 11 20:10:48 2024...
