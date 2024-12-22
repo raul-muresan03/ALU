@@ -23,10 +23,10 @@ architecture Behavioral of ALU is
     signal done1, done2, done3, done4: std_logic := '0';
 begin
 
---    ADD: entity work.add port map(A, B, result1, overflow1, zero1, clk, start1, done1);
---    SUB: entity work.sub port map(A, B, result2, overflow2, zero2, clk, start2, done2);
+    ADD: entity work.add port map(A, B, result1, overflow1, zero1, clk, start1, done1);
+    SUB: entity work.sub port map(A, B, result2, overflow2, zero2, clk, start2, done2);
     MUL: entity work.mul port map(A, B, result3, overflow3, zero3, clk, start3, done3);
---    DIV: entity work.div port map(A, B, result4, overflow4, zero4, clk, start4, done4);
+    DIV: entity work.div port map(A, B, result4, overflow4, zero4, clk, start4, done4);
     
     process(clk)
     begin

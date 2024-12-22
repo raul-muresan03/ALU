@@ -106,6 +106,7 @@ begin
                     end if;
                     
                 when others =>
+                    stare <= Initializare;
             end case;
         end if;
     end process;
