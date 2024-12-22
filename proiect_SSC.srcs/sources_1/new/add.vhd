@@ -1,6 +1,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use ieee.std_logic_signed.all;
+--use ieee.std_logic_signed.all;
 use ieee.numeric_std.all;
 
 entity add is
@@ -9,60 +9,99 @@ entity add is
         B: in std_logic_vector(15 downto 0);
         result: out std_logic_vector(31 downto 0);
         overflow: out std_logic;
-        zero: out std_logic
+        zero: out std_logic;
+        clk: in std_logic;
+        start: in std_logic;
+        done: out std_logic
     );
 end add;
 
 architecture a1 of add is
-    signal dif: std_logic_vector(3 downto 0) := (others => '0');
-    signal exp_comun: std_logic_vector(3 downto 0) := (others => '0');
-    signal mantisa_aux: std_logic_vector(10 downto 0) := (others => '0');
-    signal mantisa_shift: std_logic_vector(10 downto 0) := (others => '0');
-    signal rez_aux: std_logic_vector(10 downto 0) := (others => '0');
-    signal exp_temp: std_logic_vector(3 downto 0) := (others => '0');
-    signal final_aux: std_logic_vector(31 downto 0);
-    signal rez_aux2: std_logic_vector(10 downto 0);
+    signal sign_a, sign_b: std_logic := '0';
+    signal sign_result: std_logic := '0';
     
-    -- 1 bit semn, 4 biti exponent, 11 biti mantisa
+    signal mantisa_a, mantisa_b: std_logic_vector(10 downto 0) := (others => '0');  --1 bit in plus pentru acel 1 implicit
+    signal mantisa_result: std_logic_vector(11 downto 0) := (others => '0');       -- poate avea overflow pe 12 biti
+    
+    signal exp_a, exp_b: std_logic_vector(4 downto 0) := (others => '0');
+    signal exp_result: std_logic_vector(4 downto 0) := (others => '0');
+    
+    signal exp_diferenta: std_logic_vector(4 downto 0) := (others => '0');
+    signal mantisa_shifted: std_logic_vector(10 downto 0) := (others => '0');
+    signal mantisa_aux: std_logic_vector(11 downto 0) := (others => '0');          -- semnal auxiliar pentru normalizarea mantisei
+    signal exp_aux: std_logic_vector(4 downto 0) := (others => '0');               -- semnal auxiliar pentru normalizarea mantisei
+    
+--    signal zero_aux: std_logic;
+--    signal overflow_aux: std_logic;
+    
+    
+    -- 1 bit semn, 5 biti exponent, 10 biti mantisa
 begin
-    process(A, B)
+    process(clk)
     begin
-        overflow <= '0';
-        zero <= '0';
-        if unsigned(A(14 downto 11)) >= unsigned(B(14 downto 11)) then
-            dif <= std_logic_vector(unsigned(A(14 downto 11)) - unsigned(B(14 downto 11)));
-            exp_comun <= A(14 downto 11);
-            mantisa_aux <= B(10 downto 0);
-            mantisa_shift <= std_logic_vector(shift_left(unsigned(mantisa_aux), to_integer(unsigned(dif))));
-            rez_aux <= std_logic_vector(unsigned(mantisa_shift) - unsigned(A(10 downto 0)));
-        else
-            dif <= std_logic_vector(unsigned(B(14 downto 11)) - unsigned(A(14 downto 11)));
-            exp_comun <= B(14 downto 11);
-            mantisa_aux <= A(10 downto 0);
-            mantisa_shift <= std_logic_vector(shift_left(unsigned(mantisa_aux), to_integer(unsigned(dif))));
+        if rising_edge(clk) then
+--        zero_aux <= '0';
+--        overflow_aux <= '0';
+        
+            sign_a <= A(15);
+            exp_a <= std_logic_vector(unsigned(A(14 downto 10)) - 15);
+            mantisa_a <= '1'& A(9 downto 0);
             
-            rez_aux <= std_logic_vector(unsigned(mantisa_shift) - unsigned(B(10 downto 0)));
+            sign_b <= B(15);
+            exp_b <= std_logic_vector(unsigned(B(14 downto 10)) - 15);
+            mantisa_b <= '1'& B(9 downto 0);
+            
+            if to_integer(unsigned(exp_a)) > to_integer(unsigned(exp_b)) then
+                exp_diferenta <= std_logic_vector(unsigned(exp_a) - unsigned(exp_b));
+                mantisa_shifted <= '0' & mantisa_b(10 downto to_integer(unsigned(exp_diferenta)));
+                exp_aux <= exp_a;
+            elsif to_integer(unsigned(exp_a)) < to_integer(unsigned(exp_b)) then
+                exp_diferenta <= std_logic_vector(unsigned(exp_b) - unsigned(exp_a));
+                mantisa_shifted <= '0' & mantisa_a(10 downto to_integer(unsigned(exp_diferenta)));
+                exp_aux <= exp_b;
+            else
+                exp_diferenta <= "00000";
+                mantisa_shifted <= mantisa_b;
+                exp_aux <= exp_a;
+            end if;
+            
+            if sign_a = sign_b then
+                mantisa_aux <= std_logic_vector(unsigned('0' & mantisa_a) + unsigned('0' & mantisa_shifted));
+                sign_result <= sign_a;
+            else
+                if mantisa_a > mantisa_shifted then
+                    mantisa_aux <= std_logic_vector(unsigned('0' & mantisa_a) - unsigned('0' & mantisa_shifted));
+                    sign_result <= sign_a;
+                else
+                    mantisa_aux <= std_logic_vector(unsigned('0' & mantisa_shifted) - unsigned('0' & mantisa_a));
+                    sign_result <= sign_b;
+                end if;
+            end if;
+            -- posibil loop la zero si overflow
+            
+            if mantisa_aux(11) = '1' then    --normalizam rezultatul
+                exp_result <= std_logic_vector(unsigned(exp_aux) + 1);
+                mantisa_result <= std_logic_vector(unsigned(mantisa_aux) srl 1); -- Deplasare la dreapta
+            else
+                exp_result <= exp_aux;
+                mantisa_result <= mantisa_aux;
+            end if;
+            
+            --detectare zero
+            if mantisa_result(10 downto 0) = "00000000000" then
+                zero <= '1';
+            else
+                zero <= '0';
+            end if;
+            
+            --detectare overflow
+            if unsigned(exp_result) > 31 then
+                overflow <= '1';
+            else
+                overflow <= '0';
+            end if;
+            
+            result <= x"0000" & sign_result & exp_result & mantisa_result(9 downto 0);    --trunchiem mantisa la 10 biti
         end if;
-
-        --normalizarea rezultatului
-        exp_temp <= exp_comun;
-        rez_aux2 <= rez_aux;
-        if rez_aux2(10) = '1' then
-            rez_aux2 <= std_logic_vector(shift_right(unsigned(rez_aux2), 1));
-            exp_temp <= exp_temp + 1;
-        end if;
-        
-        exp_comun <= std_logic_vector(exp_temp);
-        if unsigned(A(15 downto 0)) >= unsigned(B(15 downto 0)) then
-           final_aux <= x"0000" & A(15) & exp_comun & rez_aux2;
-        else
-            final_aux <= x"0000" & B(15) & exp_comun & rez_aux2;
-        end if;
-        result <= final_aux;
-        
-        if final_aux = x"00000000" then
-            zero <= '1';
-        end if;
-    
     end process;
 end a1;

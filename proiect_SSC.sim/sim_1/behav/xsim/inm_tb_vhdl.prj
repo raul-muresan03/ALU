@@ -1,0 +1,24 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../proiect_SSC.ip_user_files/bd/design_1/ip/design_1_ALU_0_4/sim/design_1_ALU_0_4.vhd" \
+"../../../../proiect_SSC.srcs/sources_1/new/add.vhd" \
+"../../../../proiect_SSC.srcs/sources_1/new/sub.vhd" \
+"../../../../proiect_SSC.srcs/sources_1/new/mul.vhd" \
+"../../../../proiect_SSC.srcs/sources_1/new/div.vhd" \
+"../../../../proiect_SSC.srcs/sources_1/new/alu.vhd" \
+"../../../../proiect_SSC.ip_user_files/bd/design_1/ip/design_1_axi_gpio_0_2/sim/design_1_axi_gpio_0_2.vhd" \
+"../../../../proiect_SSC.ip_user_files/bd/design_1/ip/design_1_axi_gpio_1_1/sim/design_1_axi_gpio_1_1.vhd" \
+"../../../../proiect_SSC.ip_user_files/bd/design_1/ip/design_1_axi_gpio_1_2/sim/design_1_axi_gpio_1_2.vhd" \
+"../../../../proiect_SSC.ip_user_files/bd/design_1/ip/design_1_axi_gpio_1_3/sim/design_1_axi_gpio_1_3.vhd" \
+"../../../../proiect_SSC.ip_user_files/bd/design_1/ip/design_1_axi_gpio_1_4/sim/design_1_axi_gpio_1_4.vhd" \
+"../../../../proiect_SSC.ip_user_files/bd/design_1/ip/design_1_axi_gpio_1_5/sim/design_1_axi_gpio_1_5.vhd" \
+"../../../../proiect_SSC.ip_user_files/bd/design_1/ip/design_1_axi_gpio_1_6/sim/design_1_axi_gpio_1_6.vhd" \
+"../../../../proiect_SSC.ip_user_files/bd/design_1/ip/design_1_axi_gpio_1_7/sim/design_1_axi_gpio_1_7.vhd" \
+"../../../../proiect_SSC.ip_user_files/bd/design_1/ip/design_1_rst_ps7_0_100M_1/sim/design_1_rst_ps7_0_100M_1.vhd" \
+"../../../../proiect_SSC.ip_user_files/bd/design_1/sim/design_1.vhd" \
+"../../../../proiect_SSC.gen/sources_1/bd/design_1/hdl/design_1_wrapper.vhd" \
+"../../../../proiect_SSC.srcs/sources_1/new/mulBinary.vhd" \
+"../../../../proiect_SSC.srcs/sim_1/new/inm_tb.vhd" \
+
+# Do not sort compile order
+nosort

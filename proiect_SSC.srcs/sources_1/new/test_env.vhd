@@ -34,7 +34,7 @@ begin
     u_add: entity work.add port map (A, B, result_add, overflow_add, zero_add);
     u_sub: entity work.sub port map (A, B, result_sub, overflow_sub, zero_sub);
     u_mul: entity work.mul port map (A, B, result_mul, overflow_mul, zero_mul);
-    --u_div: entity work.div port map (A, B, result_div, overflow_div, zero_div);
+    u_div: entity work.div port map (A, B, result_div, overflow_div, zero_div);
 
     process(operation, result_add, result_sub, result_mul, result_div, 
             overflow_add, overflow_sub, overflow_mul, overflow_div,
