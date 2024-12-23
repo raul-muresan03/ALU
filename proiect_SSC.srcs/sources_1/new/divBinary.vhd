@@ -43,7 +43,7 @@ begin
                 -- impartire cu refacerea restului
                 when Impartire =>
                     partial_remainder <= partial_remainder(46 downto 0) & A_extins(23); -- shiftam restul
-                    A_extins <= A_extins(22 downto 0) & '0';            -- shiftam A la stanga
+                    A_extins <= "000000000000000000000000" & A_extins(22 downto 0) & '0';
                     
                     if unsigned(partial_remainder) >= unsigned(B_extins) then
                         partial_remainder <= std_logic_vector(unsigned(partial_remainder) - unsigned(B_extins));

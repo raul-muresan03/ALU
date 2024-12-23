@@ -12,15 +12,15 @@
     },
     "design_tree": {
       "processing_system7_0": "",
-      "axi_gpio_B": "",
-      "axi_gpio_A": "",
-      "axi_gpio_op": "",
-      "axi_gpio_zero": "",
-      "axi_gpio_led": "",
-      "axi_gpio_over": "",
-      "axi_gpio_btn": "",
-      "axi_gpio_result": "",
       "ALU_0": "",
+      "axi_gpio_A": "",
+      "axi_gpio_B": "",
+      "axi_gpio_result": "",
+      "axi_gpio_op": "",
+      "axi_gpio_overflow": "",
+      "axi_gpio_zero": "",
+      "axi_gpio_btn": "",
+      "axi_gpio_led": "",
       "ps7_0_axi_periph": {
         "xbar": "",
         "s00_couplers": {
@@ -237,8 +237,8 @@
       "processing_system7_0": {
         "vlnv": "xilinx.com:ip:processing_system7:5.5",
         "ip_revision": "6",
-        "xci_name": "design_1_processing_system7_0_1",
-        "xci_path": "ip\\design_1_processing_system7_0_1\\design_1_processing_system7_0_1.xci",
+        "xci_name": "design_1_processing_system7_0_0",
+        "xci_path": "ip\\design_1_processing_system7_0_0\\design_1_processing_system7_0_0.xci",
         "inst_hier_path": "processing_system7_0",
         "parameters": {
           "PCW_ACT_APU_PERIPHERAL_FREQMHZ": {
@@ -1483,18 +1483,6 @@
           "PCW_SPI_PERIPHERAL_VALID": {
             "value": "0"
           },
-          "PCW_S_AXI_HP0_DATA_WIDTH": {
-            "value": "64"
-          },
-          "PCW_S_AXI_HP1_DATA_WIDTH": {
-            "value": "64"
-          },
-          "PCW_S_AXI_HP2_DATA_WIDTH": {
-            "value": "64"
-          },
-          "PCW_S_AXI_HP3_DATA_WIDTH": {
-            "value": "64"
-          },
           "PCW_TPIU_PERIPHERAL_CLKSRC": {
             "value": "External"
           },
@@ -2020,128 +2008,11 @@
           }
         }
       },
-      "axi_gpio_B": {
-        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
-        "ip_revision": "33",
-        "xci_name": "design_1_axi_gpio_0_2",
-        "xci_path": "ip\\design_1_axi_gpio_0_2\\design_1_axi_gpio_0_2.xci",
-        "inst_hier_path": "axi_gpio_B",
-        "parameters": {
-          "C_ALL_OUTPUTS": {
-            "value": "1"
-          },
-          "C_GPIO_WIDTH": {
-            "value": "16"
-          }
-        }
-      },
-      "axi_gpio_A": {
-        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
-        "ip_revision": "33",
-        "xci_name": "design_1_axi_gpio_1_1",
-        "xci_path": "ip\\design_1_axi_gpio_1_1\\design_1_axi_gpio_1_1.xci",
-        "inst_hier_path": "axi_gpio_A",
-        "parameters": {
-          "C_ALL_OUTPUTS": {
-            "value": "1"
-          },
-          "C_GPIO_WIDTH": {
-            "value": "16"
-          }
-        }
-      },
-      "axi_gpio_op": {
-        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
-        "ip_revision": "33",
-        "xci_name": "design_1_axi_gpio_1_2",
-        "xci_path": "ip\\design_1_axi_gpio_1_2\\design_1_axi_gpio_1_2.xci",
-        "inst_hier_path": "axi_gpio_op",
-        "parameters": {
-          "C_ALL_OUTPUTS": {
-            "value": "1"
-          },
-          "C_GPIO_WIDTH": {
-            "value": "2"
-          }
-        }
-      },
-      "axi_gpio_zero": {
-        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
-        "ip_revision": "33",
-        "xci_name": "design_1_axi_gpio_1_3",
-        "xci_path": "ip\\design_1_axi_gpio_1_3\\design_1_axi_gpio_1_3.xci",
-        "inst_hier_path": "axi_gpio_zero",
-        "parameters": {
-          "C_ALL_INPUTS": {
-            "value": "1"
-          },
-          "C_GPIO_WIDTH": {
-            "value": "1"
-          }
-        }
-      },
-      "axi_gpio_led": {
-        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
-        "ip_revision": "33",
-        "xci_name": "design_1_axi_gpio_1_4",
-        "xci_path": "ip\\design_1_axi_gpio_1_4\\design_1_axi_gpio_1_4.xci",
-        "inst_hier_path": "axi_gpio_led",
-        "parameters": {
-          "GPIO_BOARD_INTERFACE": {
-            "value": "leds_4bits"
-          },
-          "USE_BOARD_FLOW": {
-            "value": "true"
-          }
-        }
-      },
-      "axi_gpio_over": {
-        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
-        "ip_revision": "33",
-        "xci_name": "design_1_axi_gpio_1_5",
-        "xci_path": "ip\\design_1_axi_gpio_1_5\\design_1_axi_gpio_1_5.xci",
-        "inst_hier_path": "axi_gpio_over",
-        "parameters": {
-          "C_ALL_INPUTS": {
-            "value": "1"
-          },
-          "C_GPIO_WIDTH": {
-            "value": "1"
-          }
-        }
-      },
-      "axi_gpio_btn": {
-        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
-        "ip_revision": "33",
-        "xci_name": "design_1_axi_gpio_1_6",
-        "xci_path": "ip\\design_1_axi_gpio_1_6\\design_1_axi_gpio_1_6.xci",
-        "inst_hier_path": "axi_gpio_btn",
-        "parameters": {
-          "GPIO_BOARD_INTERFACE": {
-            "value": "btns_4bits"
-          },
-          "USE_BOARD_FLOW": {
-            "value": "true"
-          }
-        }
-      },
-      "axi_gpio_result": {
-        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
-        "ip_revision": "33",
-        "xci_name": "design_1_axi_gpio_1_7",
-        "xci_path": "ip\\design_1_axi_gpio_1_7\\design_1_axi_gpio_1_7.xci",
-        "inst_hier_path": "axi_gpio_result",
-        "parameters": {
-          "C_ALL_INPUTS": {
-            "value": "1"
-          }
-        }
-      },
       "ALU_0": {
         "vlnv": "xilinx.com:module_ref:ALU:1.0",
         "ip_revision": "1",
-        "xci_name": "design_1_ALU_0_4",
-        "xci_path": "ip\\design_1_ALU_0_4\\design_1_ALU_0_4.xci",
+        "xci_name": "design_1_ALU_0_0",
+        "xci_path": "ip\\design_1_ALU_0_0\\design_1_ALU_0_0.xci",
         "inst_hier_path": "ALU_0",
         "reference_info": {
           "ref_type": "hdl",
@@ -2151,22 +2022,22 @@
         "ports": {
           "A": {
             "direction": "I",
-            "left": "15",
+            "left": "31",
             "right": "0"
           },
           "B": {
             "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "operation": {
-            "direction": "I",
-            "left": "1",
+            "left": "31",
             "right": "0"
           },
           "result": {
             "direction": "O",
             "left": "31",
+            "right": "0"
+          },
+          "operation": {
+            "direction": "I",
+            "left": "1",
             "right": "0"
           },
           "overflow": {
@@ -2184,18 +2055,165 @@
                 "value_src": "user_prop"
               },
               "CLK_DOMAIN": {
-                "value": "design_1_processing_system7_0_1_FCLK_CLK0",
+                "value": "design_1_processing_system7_0_0_FCLK_CLK0",
                 "value_src": "default_prop"
               }
             }
           }
         }
       },
+      "axi_gpio_A": {
+        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
+        "ip_revision": "33",
+        "xci_name": "design_1_axi_gpio_0_0",
+        "xci_path": "ip\\design_1_axi_gpio_0_0\\design_1_axi_gpio_0_0.xci",
+        "inst_hier_path": "axi_gpio_A",
+        "parameters": {
+          "C_ALL_INPUTS": {
+            "value": "0"
+          },
+          "C_ALL_OUTPUTS": {
+            "value": "1"
+          },
+          "C_GPIO_WIDTH": {
+            "value": "32"
+          },
+          "GPIO_BOARD_INTERFACE": {
+            "value": "Custom"
+          },
+          "USE_BOARD_FLOW": {
+            "value": "true"
+          }
+        }
+      },
+      "axi_gpio_B": {
+        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
+        "ip_revision": "33",
+        "xci_name": "design_1_axi_gpio_0_1",
+        "xci_path": "ip\\design_1_axi_gpio_0_1\\design_1_axi_gpio_0_1.xci",
+        "inst_hier_path": "axi_gpio_B",
+        "parameters": {
+          "C_ALL_INPUTS": {
+            "value": "0"
+          },
+          "C_ALL_OUTPUTS": {
+            "value": "1"
+          },
+          "C_GPIO_WIDTH": {
+            "value": "32"
+          },
+          "GPIO_BOARD_INTERFACE": {
+            "value": "Custom"
+          },
+          "USE_BOARD_FLOW": {
+            "value": "true"
+          }
+        }
+      },
+      "axi_gpio_result": {
+        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
+        "ip_revision": "33",
+        "xci_name": "design_1_axi_gpio_0_2",
+        "xci_path": "ip\\design_1_axi_gpio_0_2\\design_1_axi_gpio_0_2.xci",
+        "inst_hier_path": "axi_gpio_result",
+        "parameters": {
+          "C_ALL_INPUTS": {
+            "value": "1"
+          }
+        }
+      },
+      "axi_gpio_op": {
+        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
+        "ip_revision": "33",
+        "xci_name": "design_1_axi_gpio_0_3",
+        "xci_path": "ip\\design_1_axi_gpio_0_3\\design_1_axi_gpio_0_3.xci",
+        "inst_hier_path": "axi_gpio_op",
+        "parameters": {
+          "C_ALL_INPUTS": {
+            "value": "0"
+          },
+          "C_ALL_OUTPUTS": {
+            "value": "1"
+          },
+          "C_GPIO_WIDTH": {
+            "value": "2"
+          },
+          "GPIO_BOARD_INTERFACE": {
+            "value": "Custom"
+          },
+          "USE_BOARD_FLOW": {
+            "value": "true"
+          }
+        }
+      },
+      "axi_gpio_overflow": {
+        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
+        "ip_revision": "33",
+        "xci_name": "design_1_axi_gpio_0_4",
+        "xci_path": "ip\\design_1_axi_gpio_0_4\\design_1_axi_gpio_0_4.xci",
+        "inst_hier_path": "axi_gpio_overflow",
+        "parameters": {
+          "C_GPIO_WIDTH": {
+            "value": "1"
+          },
+          "GPIO_BOARD_INTERFACE": {
+            "value": "Custom"
+          },
+          "USE_BOARD_FLOW": {
+            "value": "true"
+          }
+        }
+      },
+      "axi_gpio_zero": {
+        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
+        "ip_revision": "33",
+        "xci_name": "design_1_axi_gpio_0_5",
+        "xci_path": "ip\\design_1_axi_gpio_0_5\\design_1_axi_gpio_0_5.xci",
+        "inst_hier_path": "axi_gpio_zero",
+        "parameters": {
+          "C_ALL_INPUTS": {
+            "value": "1"
+          },
+          "C_GPIO_WIDTH": {
+            "value": "1"
+          }
+        }
+      },
+      "axi_gpio_btn": {
+        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
+        "ip_revision": "33",
+        "xci_name": "design_1_axi_gpio_0_6",
+        "xci_path": "ip\\design_1_axi_gpio_0_6\\design_1_axi_gpio_0_6.xci",
+        "inst_hier_path": "axi_gpio_btn",
+        "parameters": {
+          "GPIO_BOARD_INTERFACE": {
+            "value": "btns_4bits"
+          },
+          "USE_BOARD_FLOW": {
+            "value": "true"
+          }
+        }
+      },
+      "axi_gpio_led": {
+        "vlnv": "xilinx.com:ip:axi_gpio:2.0",
+        "ip_revision": "33",
+        "xci_name": "design_1_axi_gpio_0_7",
+        "xci_path": "ip\\design_1_axi_gpio_0_7\\design_1_axi_gpio_0_7.xci",
+        "inst_hier_path": "axi_gpio_led",
+        "parameters": {
+          "GPIO_BOARD_INTERFACE": {
+            "value": "leds_4bits"
+          },
+          "USE_BOARD_FLOW": {
+            "value": "true"
+          }
+        }
+      },
       "ps7_0_axi_periph": {
         "vlnv": "xilinx.com:ip:axi_interconnect:2.1",
-        "xci_path": "ip\\design_1_ps7_0_axi_periph_1\\design_1_ps7_0_axi_periph_1.xci",
+        "xci_path": "ip\\design_1_ps7_0_axi_periph_0\\design_1_ps7_0_axi_periph_0.xci",
         "inst_hier_path": "ps7_0_axi_periph",
-        "xci_name": "design_1_ps7_0_axi_periph_1",
+        "xci_name": "design_1_ps7_0_axi_periph_0",
         "parameters": {
           "NUM_MI": {
             "value": "8"
@@ -2411,8 +2429,8 @@
           "xbar": {
             "vlnv": "xilinx.com:ip:axi_crossbar:2.1",
             "ip_revision": "32",
-            "xci_name": "design_1_xbar_1",
-            "xci_path": "ip\\design_1_xbar_1\\design_1_xbar_1.xci",
+            "xci_name": "design_1_xbar_0",
+            "xci_path": "ip\\design_1_xbar_0\\design_1_xbar_0.xci",
             "inst_hier_path": "ps7_0_axi_periph/xbar",
             "parameters": {
               "NUM_MI": {
@@ -3157,8 +3175,8 @@
       "rst_ps7_0_100M": {
         "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
         "ip_revision": "15",
-        "xci_name": "design_1_rst_ps7_0_100M_1",
-        "xci_path": "ip\\design_1_rst_ps7_0_100M_1\\design_1_rst_ps7_0_100M_1.xci",
+        "xci_name": "design_1_rst_ps7_0_100M_0",
+        "xci_path": "ip\\design_1_rst_ps7_0_100M_0\\design_1_rst_ps7_0_100M_0.xci",
         "inst_hier_path": "rst_ps7_0_100M"
       }
     },
@@ -3226,7 +3244,7 @@
       "ps7_0_axi_periph_M05_AXI": {
         "interface_ports": [
           "ps7_0_axi_periph/M05_AXI",
-          "axi_gpio_over/S_AXI"
+          "axi_gpio_overflow/S_AXI"
         ]
       },
       "ps7_0_axi_periph_M06_AXI": {
@@ -3246,7 +3264,7 @@
       "ALU_0_overflow": {
         "ports": [
           "ALU_0/overflow",
-          "axi_gpio_over/gpio_io_i"
+          "axi_gpio_overflow/gpio_io_i"
         ]
       },
       "ALU_0_result": {
@@ -3296,7 +3314,7 @@
           "ps7_0_axi_periph/M03_ACLK",
           "axi_gpio_op/s_axi_aclk",
           "ps7_0_axi_periph/M04_ACLK",
-          "axi_gpio_over/s_axi_aclk",
+          "axi_gpio_overflow/s_axi_aclk",
           "ps7_0_axi_periph/M05_ACLK",
           "axi_gpio_result/s_axi_aclk",
           "ps7_0_axi_periph/M06_ACLK",
@@ -3326,7 +3344,7 @@
           "ps7_0_axi_periph/M03_ARESETN",
           "axi_gpio_op/s_axi_aresetn",
           "ps7_0_axi_periph/M04_ARESETN",
-          "axi_gpio_over/s_axi_aresetn",
+          "axi_gpio_overflow/s_axi_aresetn",
           "ps7_0_axi_periph/M05_ARESETN",
           "axi_gpio_result/s_axi_aresetn",
           "ps7_0_axi_periph/M06_ARESETN",
@@ -3365,8 +3383,8 @@
                 "offset": "0x41240000",
                 "range": "64K"
               },
-              "SEG_axi_gpio_over_Reg": {
-                "address_block": "/axi_gpio_over/S_AXI/Reg",
+              "SEG_axi_gpio_overflow_Reg": {
+                "address_block": "/axi_gpio_overflow/S_AXI/Reg",
                 "offset": "0x41250000",
                 "range": "64K"
               },

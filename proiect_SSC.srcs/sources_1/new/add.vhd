@@ -36,7 +36,7 @@ architecture a1 of add is
     signal mantisa_shifted: std_logic_vector(23 downto 0);
     signal start_add, done_add, semn_A, semn_B, semn_result: std_logic := '0';
     signal mantisa_result: std_logic_vector(24 downto 0); -- 25 biti pentru rezultat cu carry
-    signal exp_result: std_logic_vector(7 downto 0);
+    signal exp_result: std_logic_vector(8 downto 0);
     
     -- 1 bit semn, 8 biti exponent, 23 biti mantisa
 begin
@@ -80,16 +80,16 @@ begin
                 
                 when AdunareMantise =>
                     if semn_A = semn_B then
-                        mantisa_result <= std_logic_vector(unsigned(mantisa_A) + unsigned(mantisa_shifted));
+                        mantisa_result <= std_logic_vector(unsigned('0' & mantisa_A) + unsigned('0' & mantisa_shifted));
                     else
                         if unsigned(mantisa_A) = unsigned(mantisa_shifted) then
                             mantisa_result <= (others => '0');      -- rezultatul este zero
                             semn_result <= '0';             -- semnul nu conteaza
                         elsif unsigned(mantisa_A) > unsigned(mantisa_shifted) then
-                            mantisa_result <= std_logic_vector(unsigned(mantisa_A) - unsigned(mantisa_shifted));
+                            mantisa_result <= std_logic_vector(unsigned('0' & mantisa_A) - unsigned('0' & mantisa_shifted));
                             semn_result <= semn_A;
                         else
-                            mantisa_result <= std_logic_vector(unsigned(mantisa_shifted) - unsigned(mantisa_A));
+                            mantisa_result <= std_logic_vector(unsigned('0' & mantisa_shifted) - unsigned('0' & mantisa_A));
                             semn_result <= semn_B;
                         end if;
                     end if;
@@ -97,28 +97,27 @@ begin
                     stare <= NormalizareRezultat;
                    
                 when NormalizareRezultat =>
-                    if mantisa_result = (others => '0') then
+                    if mantisa_result = "0000000000000000000000000" then
                         exp_result <= (others => '0'); -- Exponentul este zero
                     else
                         if mantisa_result(24) = '1' then
                             exp_result <= std_logic_vector(unsigned(exp_max) + 1);
                             mantisa_result <= std_logic_vector(shift_right(unsigned(mantisa_result), 1));
                         else
-                            exp_result <= exp_max(7 downto 0);
+                            exp_result <= "0" & exp_max(7 downto 0);
                         end if;
                         exp_result <= std_logic_vector(unsigned(exp_result) + 127);
                     end if;
-
                     
                     result(31) <= semn_result;
-                    result(30 downto 23) <= exp_result;
+                    result(30 downto 23) <= exp_result(7 downto 0);
                     result(22 downto 0) <= mantisa_result(22 downto 0);
                     
-                    if (exp_result & mantisa_result(22 downto 0)) = (others => '0') then
+                    if (exp_result & mantisa_result(22 downto 0)) = "0000000000000000000000000000000" then
                         zero <= '1';
                     end if;
 
-                    if unsigned(exp_result) > 255 then
+                    if to_integer(unsigned(exp_result)) > 255 then
                         overflow <= '1';
                     end if;
 

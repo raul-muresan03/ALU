@@ -36,13 +36,16 @@ architecture a2 of sub is
     signal mantisa_A, mantisa_B, mantisa_shifted: std_logic_vector(23 downto 0);
     signal semn_A, semn_B, semn_result: std_logic := '0';
     signal mantisa_result: std_logic_vector(24 downto 0);
-    signal exp_result: std_logic_vector(7 downto 0);
+    signal exp_result: std_logic_vector(8 downto 0);
     signal start_sub, done_sub: std_logic := '0';
+    
+    signal mantisa_result_internal: std_logic_vector(24 downto 0);
+
 
     -- 1 bit semn, 8 biti exponent, 23 biti mantisa
 begin
 
-    scazatorNormal: subBinary port map(A => mantisa_A, B => mantisa_B, result => mantisa_result, clk => clk, start => start_sub, done => done_sub);
+    scazatorNormal: subBinary port map(A => mantisa_A, B => mantisa_B, result => mantisa_result_internal, clk => clk, start => start_sub, done => done_sub);
     
     process(clk)
     begin
@@ -98,26 +101,26 @@ begin
 
                 
                 when NormalizareRezultat =>
-                   if mantisa_result(24) = '1' then             --bitul de borrow
+                   if mantisa_result_internal(24) = '1' then             --bitul de borrow
                         exp_result <= std_logic_vector(unsigned(exp_max) + 1);
-                        mantisa_result <= std_logic_vector(shift_right(unsigned(mantisa_result), 1));
-                    elsif mantisa_result(23 downto 0) = (others => '0') then
-                        exp_result <= "00000000";       -- underflow
+                        mantisa_result <= std_logic_vector(shift_right(unsigned(mantisa_result_internal), 1));
+                    elsif mantisa_result_internal(23 downto 0) = "000000000000000000000000" then
+                        exp_result <= "000000000";       -- underflow
                     else
-                        exp_result <= exp_max(7 downto 0);
+                        exp_result <= "0" & exp_max(7 downto 0);
                     end if;
                     
                     exp_result <= std_logic_vector(unsigned(exp_result) + 127);
 
                     result(31) <= semn_result;
-                    result(30 downto 23) <= exp_result;
+                    result(30 downto 23) <= exp_result(7 downto 0);
                     result(22 downto 0) <= mantisa_result(22 downto 0);
 
-                    if (unsigned(exp_result) = 0 and mantisa_result(22 downto 0) = (others => '0')) then
+                    if unsigned(exp_result) = 0 and mantisa_result(22 downto 0) = "0000000000000000000000000000000" then
                         zero <= '1';
                     end if;
 
-                    if unsigned(exp_result) > 127 then      --verificam fara deplasament
+                    if to_integer(unsigned(exp_result)) > 127 then      --verificam fara deplasament
                         overflow <= '1';
                     end if;
 

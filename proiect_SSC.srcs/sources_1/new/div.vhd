@@ -5,8 +5,8 @@ use ieee.numeric_std.all;
 
 entity div is
     port (
-        A: in std_logic_vector(15 downto 0);
-        B: in std_logic_vector(15 downto 0);
+        A: in std_logic_vector(31 downto 0);
+        B: in std_logic_vector(31 downto 0);
         result: out std_logic_vector(31 downto 0);
         overflow: out std_logic;
         zero: out std_logic;
@@ -36,12 +36,17 @@ architecture a4 of div is
     signal semn_A, semn_B, semn_result: std_logic := '0';
     signal mantisa_result: std_logic_vector(23 downto 0);
     signal start_div, done_div: std_logic := '0';
+    
+    signal mantisa_result_internal: std_logic_vector(23 downto 0);
+    signal mantisa_normalizata: std_logic_vector(23 downto 0);
+
+
 
     -- 1 bit semn, 8 biti exponent, 23 biti mantisa
 begin
 
-    impartitorNormal: divBinary port map (A => mantisa_A, B => mantisa_B, result => mantisa_result, clk => clk, start => start_div, done => done_div);
-
+    impartitorNormal: divBinary port map (A => mantisa_A, B => mantisa_B, result => mantisa_result_internal, clk => clk, start => start_div, done => done_div);
+    mantisa_result <= mantisa_result_internal;
     process(clk)
     begin
         if rising_edge(clk) then
@@ -49,8 +54,8 @@ begin
             
                 when Initializare =>
                     if start = '1' then
-                        if B(30 downto 0) = (others => '0') then
-                            if A(30 downto 0) = (others => '0') then
+                        if B(30 downto 0) = "0000000000000000000000000000000" then
+                            if A(30 downto 0) = "0000000000000000000000000000000" then
                                 -- 0/0 = NaN
                                 result <= x"7FC00000";
                             else
@@ -61,7 +66,7 @@ begin
                             end if;
                             done <= '1';
                             stare <= Terminare;
-                        elsif A(30 downto 0) = (others => '0') then
+                        elsif A(30 downto 0) = "0000000000000000000000000000000" then
                             -- 0/a = 0, a/=0
                             result(31) <= A(31) xor B(31);
                             result(30 downto 23) <= (others => '0');
@@ -96,21 +101,21 @@ begin
                     stare <= NormalizareRezultat;
                     
                 when NormalizareRezultat =>
-                    if mantisa_result(23) = '0' then
-                        mantisa_result <= std_logic_vector(shift_left(unsigned(mantisa_result), 1));
+                    if mantisa_result_internal(23) = '0' then
+                        mantisa_normalizata <= std_logic_vector(shift_left(unsigned(mantisa_result_internal), 1));
                         exp_result <= std_logic_vector(unsigned(exp_result) - 1);
                     end if;
                     
                     exp_result <= std_logic_vector(unsigned(exp_result) + 127);
                     result(31) <= semn_result;
-                    result(30 downto 23) <= exp_result;
-                    result(22 downto 0) <= mantisa_result(22 downto 0);
+                        result(30 downto 23) <= exp_result(7 downto 0);
+                    result(22 downto 0) <= mantisa_result_internal(22 downto 0);
                     
-                    if mantisa_result = (others => '0') then
+                    if mantisa_result_internal = "000000000000000000000000" then
                         zero <= '1';
                     end if;
 
-                    if unsigned(exp_result) > 255 then
+                    if to_integer(unsigned(exp_result)) > 255 then
                         overflow <= '1';
                     end if;
                     

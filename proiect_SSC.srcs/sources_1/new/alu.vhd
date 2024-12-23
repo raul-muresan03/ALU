@@ -17,16 +17,69 @@ entity ALU is
 end ALU;
 
 architecture Behavioral of ALU is
+
+    component add is
+    port (
+        A: in std_logic_vector(31 downto 0);
+        B: in std_logic_vector(31 downto 0);
+        result: out std_logic_vector(31 downto 0);
+        overflow: out std_logic;
+        zero: out std_logic;
+        clk: in std_logic;
+        start: in std_logic;
+        done: out std_logic
+        );
+    end component;
+    
+    component sub is
+    port (
+        A: in std_logic_vector(31 downto 0);
+        B: in std_logic_vector(31 downto 0);
+        result: out std_logic_vector(31 downto 0);
+        overflow: out std_logic;
+        zero: out std_logic;
+        clk: in std_logic;
+        start: in std_logic;
+        done: out std_logic
+        );
+    end component;
+    
+    component mul is
+    port (
+        A: in std_logic_vector(31 downto 0);
+        B: in std_logic_vector(31 downto 0);
+        result: out std_logic_vector(31 downto 0);
+        overflow: out std_logic;
+        zero: out std_logic;
+        clk: in std_logic;
+        start: in std_logic;
+        done: out std_logic
+        );
+    end component;
+    
+    component div is
+    port (
+        A: in std_logic_vector(31 downto 0);
+        B: in std_logic_vector(31 downto 0);
+        result: out std_logic_vector(31 downto 0);
+        overflow: out std_logic;
+        zero: out std_logic;
+        clk: in std_logic;
+        start: in std_logic;
+        done: out std_logic
+        );
+    end component;
+
     signal result1, result2, result3, result4: std_logic_vector(31 downto 0):= (others => '0');
     signal overflow1, overflow2, overflow3, overflow4, zero1, zero2, zero3, zero4: std_logic := '0';
     signal start1, start2, start3, start4: std_logic := '1';
     signal done1, done2, done3, done4: std_logic := '0';
 begin
 
-    ADD: entity work.add port map(A, B, result1, overflow1, zero1, clk, start1, done1);
-    SUB: entity work.sub port map(A, B, result2, overflow2, zero2, clk, start2, done2);
-    MUL: entity work.mul port map(A, B, result3, overflow3, zero3, clk, start3, done3);
-    DIV: entity work.div port map(A, B, result4, overflow4, zero4, clk, start4, done4);
+    ADD1: add port map(A, B, result1, overflow1, zero1, clk, start1, done1);
+    SUB1: sub port map(A, B, result2, overflow2, zero2, clk, start2, done2);
+    MUL1: mul port map(A, B, result3, overflow3, zero3, clk, start3, done3);
+    DIV1: div port map(A, B, result4, overflow4, zero4, clk, start4, done4);
     
     process(clk)
     begin
