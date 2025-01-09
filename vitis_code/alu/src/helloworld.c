@@ -4,14 +4,14 @@
 #include "xparameters.h"
 #include <stdio.h>
 
-#define ADD 0b00
-#define SUB 0b01
-#define MUL 0b10
-#define DIV 0b11
+#define ADD 0x1
+#define SUB 0x2
+#define MUL 0x4
+#define DIV 0x8
 
 int main() {
   XGpio A, B, result, op, overflow, zero, btn, led;
-
+  u32 op_value;
   XGpio_Initialize(&A, XPAR_AXI_GPIO_A_BASEADDR);
   XGpio_Initialize(&B, XPAR_AXI_GPIO_B_BASEADDR);
   XGpio_Initialize(&result, XPAR_AXI_GPIO_RESULT_BASEADDR);
@@ -31,63 +31,74 @@ int main() {
   XGpio_SetDataDirection(&led, 1, 0x0);
 
   init_platform();
-  printf("Start platforma\n");
+  xil_printf("Start platforma\n");
 
+  u32 last_A = 0, last_B = 0, last_op = 0;
+  int flag = 0;
   while (1) {
-    int A_value, B_value, op, result, overflow, zero, led_state = 0;
+    u32 A_value, B_value, op_value, result_value, overflow_value, zero_value,
+        led_state = 0;
 
-    printf("Introduceti valoarea pentru A: ");
-    scanf("%d", &A_value);
-    printf("Introduceti valoarea pentru B: ");
-    scanf("%d", &B_value);
+    // xil_printf("Introduceti valoarea pentru A: ");
+    // scanf("%d", &A_value);
+    // xil_printf("Introduceti valoarea pentru B: ");
+    // scanf("%d", &B_value);
+    A_value = 10;
+    B_value = 15;
 
     XGpio_DiscreteWrite(&A, 1, A_value);
     XGpio_DiscreteWrite(&B, 1, B_value);
 
-    op = XGpio_DiscreteRead(&btn, 1) & 0b11;
-    XGpio_DiscreteWrite(&op, 1, op);
-    
-    result = XGpio_DiscreteRead(&result, 1);
-    overflow = XGpio_DiscreteRead(&overflow, 1);
-    zero = XGpio_DiscreteRead(&zero, 1);
+    op_value = XGpio_DiscreteRead(&btn, 1) & 0b1111;
+    XGpio_DiscreteWrite(&op, 1, op_value);
+
+    result_value = XGpio_DiscreteRead(&result, 1);
+    overflow_value = XGpio_DiscreteRead(&overflow, 1);
+    zero_value = XGpio_DiscreteRead(&zero, 1);
 
     led_state = 0;
-    if (overflow) {
-      led_state = led_state | 0b01;
+    if (overflow_value) {
+      led_state = led_state | 0x1;
     }
-    if (zero) {
-      led_state = led_state | 0b10;
+    if (zero_value) {
+      led_state = led_state | 0x2;
     }
 
     XGpio_DiscreteWrite(&led, 1, led_state);
 
-    printf("Operatia: ");
-    switch (op) {
-    case ADD:
-      printf("Adunare (%d + %d)\n", A_value, B_value);
-      break;
-    case SUB:
-      printf("Scadere (%d - %d)\n", A_value, B_value);
-      break;
-    case MUL:
-      printf("Inmultire (%d * %d)\n", A_value, B_value);
-      break;
-    case DIV:
-      if (B_value != 0)
-        printf("Impartire (%d / %d)\n", A_value, B_value);
-      else
-        printf("Eroare: Impartire la zero!\n");
-      break;
-    default:
-      printf("Operatie necunoscuta!\n");
-      break;
+    if (last_A != A_value || last_B != B_value || last_op != op_value) {
+      switch (op_value) {
+      case ADD:
+        xil_printf("Adunare (%d + %d)\n", A_value, B_value);
+        break;
+      case SUB:
+        xil_printf("Scadere (%d - %d)\n", A_value, B_value);
+        break;
+      case MUL:
+        xil_printf("Inmultire (%d * %d)\n", A_value, B_value);
+        break;
+      case DIV:
+        if (B_value != 0) {
+          xil_printf("Impartire (%d / %d)\n", A_value, B_value);
+        } else {
+          xil_printf("Eroare: Impartire la zero!\n");
+        }
+        break;
+      default:
+        // xil_printf("Operatie necunoscuta!\n");
+        break;
+      }
+      xil_printf("Rezultatul este: %d\n", result_value);
+      xil_printf("Overflow: %d\n", overflow_value);
+      xil_printf("Zero: %d\n", zero_value);
+
+      // Actualizează valorile pentru a preveni afișarea repetată
+      last_A = A_value;
+      last_B = B_value;
+      last_op = op_value;
     }
 
-    printf("Rezultatul este: %d\n", result);
-    printf("Overflow: %d\n", overflow);
-    printf("Zero: %d\n", zero);
-
-    usleep(200000);
+    usleep(20000);
   }
 
   cleanup_platform();
