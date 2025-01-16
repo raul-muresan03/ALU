@@ -46,7 +46,6 @@ begin
     begin
         if rising_edge(clk) then
             case stare is
-            
                 when Initializare =>
                     if start = '1' then
                         stare <= AliniereExponenti;

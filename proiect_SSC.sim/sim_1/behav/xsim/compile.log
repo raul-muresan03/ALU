@@ -1,7 +1,0 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sim_1/new/inm_tb.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'mul_tb'
-ERROR: [VRFC 10-1253] positional association cannot follow named association [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sim_1/new/inm_tb.vhd:37]
-ERROR: [VRFC 10-2989] 'reset' is not declared [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sim_1/new/inm_tb.vhd:56]
-ERROR: [VRFC 10-2989] 'reset' is not declared [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sim_1/new/inm_tb.vhd:61]
-ERROR: [VRFC 10-9458] unit 'behavioral' is ignored due to previous errors [C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sim_1/new/inm_tb.vhd:8]
-INFO: [VRFC 10-8704] VHDL file 'C:/Users/Raul/Desktop/SSC_projects/ALU/proiect_SSC.srcs/sim_1/new/inm_tb.vhd' is ignored due to errors
